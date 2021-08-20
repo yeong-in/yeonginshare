@@ -1,9 +1,5 @@
 package com.example.calendarviewexample;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -11,9 +7,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static com.example.calendarviewexample.CalendarUtils.daysInMonthArray;
@@ -24,6 +26,14 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     MediaPlayer mediaPlayer;
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
+    private BottomNavigationView bottomNavigationView; //바텀네비게이션뷰하단바
+    private FragmentManager fm;
+    private FragmentTransaction ft;
+    private Timetable timetable;
+    private Setting setting;
+    private long backBtnTime = 0;
+
+
 
 
     @Override
@@ -32,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        bottomNavigationView=findViewById(R.id.bottomNavi);
+        timetable = new Timetable();
+        setting = new Setting();
+
         mediaPlayer = MediaPlayer.create(this, R.raw.bgm);
         mediaPlayer.setLooping(true); //무한재생
         mediaPlayer.start();
@@ -39,6 +53,31 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        long curTime = System.currentTimeMillis();
+        long gapTime = curTime - backBtnTime;
+
+        if(0<= gapTime && 2000 >= gapTime) {
+            super.onBackPressed();
+        }
+        else {
+            backBtnTime = curTime;
+            Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private void setFrag(int n) {
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+        switch (n) {
+            case 0:
+
+
+        }
     }
 
 
