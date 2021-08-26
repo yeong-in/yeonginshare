@@ -127,8 +127,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Event"
-        android:textColor="@color/blue"
+        android:text="~오늘의 일기~"
+        android:textColor="@color/gray"
         android:background="@null"
         android:textStyle="bold"
         android:onClick="newEventAction"

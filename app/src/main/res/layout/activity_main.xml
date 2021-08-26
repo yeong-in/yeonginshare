@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,7 +18,7 @@
         android:background="#D5E4E6"
         android:onClick="weeklyAction"
         android:text="Weekly"
-        android:textColor="@color/blue"
+        android:textColor="#3F51B5"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -129,17 +130,23 @@
             android:textSize="16sp"/>
 
 
+
+
     </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendarRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="520dp" />
+        android:layout_height="420dp"
+        android:layout_weight="1"/>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:background="@color/white"
         app:itemIconTint="#000000"
         app:itemTextColor="#000000"
